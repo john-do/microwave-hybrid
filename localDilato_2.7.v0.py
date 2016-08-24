@@ -3,6 +3,14 @@
 0.1 12/2015 Text only version of measurements for hybrid dilatometry
 0.2 25/1/2016 Addition of graphing, self check when typing COMport, escape measurement with Ctrl+C, added computer clock time to printout, automatically make output *.txt
 0.3 Added Gui and file dialog
+
+----------
+v0_py2.7
+    Functioning TEXT ONLY data collection for microwave hybrid dilatometry.
+    Measures temperature previously configured serial connection
+        !!!COM PORT HARDCODED TO COM4
+    Measures length from LVDT via NIDAQ USB-6000 via 0-10V
+    Saves index, computer time, elapsed time, temperature (deg C), length (mm) to ./
 """
 
 import sys
