@@ -15,7 +15,7 @@ v0_py2.7
 v0_py3
     Update code to run in python3
     Code cleanup
-    Fixed COM port so promted for import number
+    Fixed COM port so promted for COMport number
 """
 
 import sys
@@ -54,10 +54,10 @@ def main():
             print("Please input only the COM port number")
             
         
-    file_name = raw_input('Choose file name:')
+    
     
     #Initiate Files
-    
+    file_name = input('Choose file name:')
     file = file_init(file_name)
     
     # Connect and configure DAQ
@@ -72,12 +72,9 @@ def main():
     
 
     # Connect to OTP
-    
-
     ser = serial.Serial(comPort,9600)
     
     #configure plot
-    
     """plt.axis([500,1500,1,0])
     plt.ion()
     plt.show()"""
@@ -118,6 +115,7 @@ def main():
                 temperature_array.append(T)
                 #print T
             except:
+                #prevent code from aborting if a serial reading is missed
                 T = None
                 temperature_array.append(T)
                 #print T
