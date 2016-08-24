@@ -11,6 +11,7 @@ v0_py2.7
         !!!COM PORT HARDCODED TO COM4
     Measures length from LVDT via NIDAQ USB-6000 via 0-10V
     Saves index, computer time, elapsed time, temperature (deg C), length (mm) to ./
+    
 """
 
 import sys
