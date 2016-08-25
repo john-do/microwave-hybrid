@@ -9,6 +9,6 @@ Python 3.x
     
 NiDAQmx driver for NI-DAQ USB-6000
 
-Driver packages for ch341_hl-340 serial cable
+Driver packages for ch341_hl-340 usb-to-serial cable
 
 
