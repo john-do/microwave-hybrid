@@ -27,6 +27,7 @@ from numpy import float64 as f64
 
 
 def file_init(file_name):
+    # Open and setup tab separated file and header
     file = open(file_name,'w')
     """if file[-4:]== '.txt':
         pass
@@ -42,7 +43,8 @@ def file_init(file_name):
     
 
 def main():
-
+    
+    # Setup serial communications
     comInput = True
     while comInput:
         comPort = input('COMX X = ? :')
@@ -53,14 +55,12 @@ def main():
         else:
             print("Please input only the COM port number")
             
-        
     
-    
-    #Initiate Files
+    #Initiate Data Files
     file_name = input('Choose file name:')
     file = file_init(file_name)
     
-    # Connect and configure DAQ
+    # Connect and configure DAQ NI DAQ-6000
     analog_input = Task()
     data = zeros((100,),dtype=f64)
     read = int32()
@@ -71,7 +71,7 @@ def main():
     analog_input.ReadAnalogF64(100,10.0,DAQmx_Val_GroupByChannel,data,100,byref(read),None)
     
 
-    # Connect to OTP
+    # Connect to Optical temperature probe
     ser = serial.Serial(comPort,9600)
     
     #configure plot
@@ -88,12 +88,15 @@ def main():
     
     start_time = time.time() 
     #last_loop_time = 0
+    
+    # Serial has occational issues of skipping a response
     try:
         while True:
             n += 1
             ser.flushInput(),ser.flushOutput()
             tnow = time.strftime("%H:%M:%S")
-            #measure l        
+            
+            #measure dilatometer       
             try:
                 analog_input.ReadAnalogF64(100,10.0,DAQmx_Val_GroupByChannel,data,100,byref(read),None)
                     
@@ -106,7 +109,7 @@ def main():
                 l = None
                 #print l
                         
-            # measure T             
+            # measure OTP temperature and clean serial response           
             try:
                 #ser.flushInput(),ser.flushOutput()
                 t_text = ser.readline().strip()
@@ -120,7 +123,7 @@ def main():
                 temperature_array.append(T)
                 #print T
             
-            # Print to file 
+            # Print to data file 
             elapsed_time = time.time() - start_time
             time_array.append(elapsed_time)
                         
