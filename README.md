@@ -1,7 +1,5 @@
-# microwave-hybrid
-Measurement and control of microwave hybrid sintering unit
-
-Mesaurement programs for logging dilatometric measurements for the dilatometery mounted on the microwave hybrid kit located in S0.28??
+# Microwave-Hybrid OTP Measurement
+Script for the lvdt dilatometry and optical temperature probe (OTP) used on the microwave hybrid sintering unit Dept. Materials, Loughborugh University
 
 Local Version Requires:
 Python 3.x
